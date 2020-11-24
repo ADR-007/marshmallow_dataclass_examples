@@ -1,0 +1,1 @@
+marshmallow-dataclass[enum,union]==8.2.0
