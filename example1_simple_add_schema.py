@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from enum import Enum
 
-from marshmallow_dataclass import class_schema
+from marshmallow_dataclass import add_schema
 
 
 class Command(Enum):
@@ -9,14 +9,13 @@ class Command(Enum):
     DELETE = 'delete'
 
 
+@add_schema  # <--------------
 @dataclass
 class Config:
     file_path: str
     command: Command = field(metadata=dict(by_value=True))
     bulk_size: int = 20
 
-
-Config.Schema = class_schema(Config)  # <--------------
 
 json_data = {
     'file_path': '/validators-example/file',
